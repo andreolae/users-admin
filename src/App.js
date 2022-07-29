@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import {Admin, Resource, Layout} from 'react-admin';
+import jsonServerProvider from 'ra-data-json-server';
+import {UserList, UserCreate, UserEdit} from "./pages/users";
+import dashboard from './pages/dashboard';
+import authProvider from './authProvider';
+import {PhotoCreate, PhotoEdit, PhotoList} from "./pages/photos";
+import {MyLoginPage} from "./components/MyLoginPage";
+import {UserShow} from "./components/UserShow";
+import {PhotoShow} from "./components/PhotoShow";
+import { MyLayout } from "./components/MyLayout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+
+const App = () => (
+  <Admin layout={MyLayout} loginPage={MyLoginPage} dashboard={dashboard} authProvider={authProvider} dataProvider={dataProvider}>
+    <Resource name="users" list={UserList} edit={UserEdit} create={UserCreate} show={UserShow}/>
+    <Resource name="photos" list={PhotoList} edit={PhotoEdit} create={PhotoCreate} show={PhotoShow}/> 
+  </Admin>
+);
 
 export default App;
