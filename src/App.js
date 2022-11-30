@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Admin, Resource, Layout} from 'react-admin';
+import {Admin, Resource} from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import {UserList, UserCreate, UserEdit} from "./pages/users";
 import dashboard from './pages/dashboard';
